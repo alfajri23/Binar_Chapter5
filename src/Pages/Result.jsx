@@ -4,9 +4,10 @@ import Panel from '../Components/Panel/Panel'
 import Footer from '../Components/Footer/Footer'
 import SpaceHero from '../Components/SpacerHero/SpaceHero'
 import Cars from '../Components/Card/Cars'
+import {connect} from 'react-redux';
 
 
-export default class Home extends Component {
+class Home extends Component {
 
     state = {
         data: []
@@ -20,10 +21,14 @@ export default class Home extends Component {
 
 
     componentDidMount() {
-        this.getData();
+        //this.getData();
+        this.props.getData();
     }
 
+    getDevi
+
   render() {
+    console.log(this.state.data)
     return (
       <div>
           <Navbar></Navbar>
@@ -32,10 +37,25 @@ export default class Home extends Component {
 
           <div className="row">
             <div className="container d-flex flex-wrap justify-content-between w-80">
-            { this.state.data.map((e,key)=>{ 
+            {/* { this.state.data.map((e,key)=>{ 
                 return <Cars key={key} {...e}/>
-                }) }
-                
+            }) } */}
+
+            { this.props.data.map((e,key)=>{ 
+                return <Cars key={key} {...e}/>
+            }) }
+
+            
+            {/* {
+            this.props.data != null ? 
+                this.props.data.map((e,key)=>{ 
+                  return <Cars key={key} {...e}/>
+              }) : []
+            } */}
+            
+            
+            
+
             </div>
 
           </div>
@@ -44,3 +64,25 @@ export default class Home extends Component {
     )
   }
 }
+
+const getData = () => async(dispatch) => {
+  let data = await fetch('https://rent-cars-api.herokuapp.com/customer/car')
+  let datas = await data.json();
+  return dispatch({type:'FETCH_DATA', payload: datas})
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      getData : () => dispatch(getData())
+  }
+}
+
+const mapStateToProps = (state) => {
+  console.log('dari global : ' + state.data);
+  return {
+      data : state.data,
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

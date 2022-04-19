@@ -1,7 +1,6 @@
 import React from 'react'
 import './Panel.css'
 import { Link } from "react-router-dom";
-import {connect} from 'react-redux';
 
 const Panel = (props) => {
 
@@ -62,17 +61,5 @@ const Panel = (props) => {
   )
 }
 
-const getData = () => async(dispatch) => {
-    let data = await fetch('https://rent-cars-api.herokuapp.com/customer/car')
-    let datas = await data.json();
-    return dispatch({type:'FETCH_DATA', payload: datas})
-}
 
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        changeStatus: () => dispatch({type:'CHANGE_STATUS',status:1})
-    }
-}
-
-export default connect(null,mapDispatchToProps)(Panel)
+export default Panel

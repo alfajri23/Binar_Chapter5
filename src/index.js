@@ -15,12 +15,12 @@ const globalState = {
     tipe : 'Manual',
     year : 'Tahun 2020',
     status : 'Pilih mobil',
-    data : null,
+    data : [],
 }
 
 //reducer functions
 const rootReducer = (state = globalState,action) => {
-    console.log(action);
+    //console.log(action);
     if(action.type === 'CHANGE_STATUS'){
         if(action.status === 1){
             return {
@@ -39,7 +39,7 @@ const rootReducer = (state = globalState,action) => {
             data : action.payload
         }
     }
-    
+
     return state;
 }
 
