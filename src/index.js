@@ -20,16 +20,16 @@ const globalState = {
 
 //reducer functions
 const rootReducer = (state = globalState,action) => {
-    //console.log(action);
+    console.log(state);
     if(action.type === 'CHANGE_STATUS'){
         if(action.status === 1){
             return {
-                // ...state,
+                ...state,
                 status: 'Lanjutkan Pembayaran'
             }
         }else{
             return {
-                // ...state,
+                ...state,
                 status: 'Pilih mobil'
             }
         }

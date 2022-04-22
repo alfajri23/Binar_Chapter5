@@ -28,7 +28,7 @@ class Home extends Component {
     getDevi
 
   render() {
-    console.log(this.state.data)
+    //console.log(this.state.data)
     return (
       <div>
           <Navbar></Navbar>
@@ -79,7 +79,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log('dari global : ' + state.data);
+  console.log('dari global : ');
+  console.log(state.data);
   return {
       data : state.data,
   }
